@@ -25,8 +25,72 @@ x-ibm-configuration:
     enabled: true
   assembly:
     execute:
+      - map:
+          title: 'financing: input'
+          inputs:
+            amount:
+              schema:
+                type: float
+              variable: request.parameters.amount
+            duration:
+              schema:
+                type: integer
+              variable: request.parameters.duration
+            rate:
+              schema:
+                type: float
+              variable: request.parameters.rate
+          outputs:
+            body:
+              schema:
+                $ref: >-
+                  #/x-ibm-configuration/targets/financingService/definitions/financingInput
+              variable: message.body
+              content: application/xml
+            content-type:
+              schema:
+                type: string
+              variable: message.headers.content-type
+            SOAPAction:
+              schema:
+                type: string
+              variable: message.headers.SOAPAction
+          actions:
+            - set: content-type
+              default: text/xml
+            - set: SOAPAction
+              default: 'http://thinkibm-services.mybluemix.net/financing'
+            - set: body.Envelope.Body.financingRequest.amount
+              from: amount
+            - set: body.Envelope.Body.financingRequest.duration
+              from: duration
+            - set: body.Envelope.Body.financingRequest.rate
+              from: rate
       - invoke:
-          target-url: $(target-url)$(request.path)
+          title: 'financing: invoke'
+          target-url: 'https://thinkibm-services.mybluemix.net/financing/calculate'
+          timeout: 60
+          verb: POST
+          cache-response: protocol
+          cache-ttl: 900
+          output: financingOut
+      - map:
+          title: 'financing: output'
+          inputs:
+            input:
+              schema:
+                $ref: >-
+                  #/x-ibm-configuration/targets/financingService/definitions/financingOutput
+              variable: financingOut.body
+              content: application/xml
+          outputs:
+            paymentAmount:
+              schema:
+                $ref: '#/definitions/paymentAmount'
+              variable: message.body
+          actions:
+            - set: paymentAmount.paymentAmount
+              from: input.Envelope.Body.financingResult.paymentAmount
   targets:
     financingService:
       swagger: '2.0'
@@ -214,6 +278,7 @@ x-ibm-configuration:
             xmlns:ser="http://thinkibm-services.mybluemix.net">
              <ser:paymentAmount><!-- mandatory -->string</ser:paymentAmount>
             </ser:financingResult>
+  gateway: datapower-gateway
 paths:
   /calculate:
     get:
