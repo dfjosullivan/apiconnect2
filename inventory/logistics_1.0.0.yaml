@@ -156,7 +156,48 @@ x-ibm-configuration:
                     description: Map responses from invoke_xyz and invoke_cek to output
             - operations:
                 - get.stores
-              execute: []
+              execute:
+                - invoke:
+                    title: invoke_google_geolocate
+                    timeout: 60
+                    verb: GET
+                    cache-response: protocol
+                    cache-ttl: 900
+                    version: 1.0.0
+                    target-url: >-
+                      https://maps.googleapis.com/maps/api/geocode/json?&address={zip}
+                    output: google_geocode_response
+                - gatewayscript:
+                    title: gws-format-maps-links
+                    version: 1.0.0
+                    source: >-
+                      // Require API Connect Functions
+
+                      var apic = require('local:///isp/policy/apim.custom.js');
+
+
+                      // Save the Google Geocode response body to variable
+
+                      var mapsApiRsp =
+                      apic.getvariable('google_geocode_response.body');
+
+
+                      // Get location attributes from geocode response body
+
+                      var location = mapsApiRsp.results[0].geometry.location;
+
+
+                      // Set up the response data object, concat the latitude
+                      and longitude
+
+                      var rspObj = {
+                        "google_maps_link": "https://www.google.com/maps?q=" + location.lat + "," + location.lng
+                      };
+
+
+                      // Save the output
+
+                      apic.setvariable('message.body', rspObj);
           otherwise: []
           version: 1.0.0
     catch: []
