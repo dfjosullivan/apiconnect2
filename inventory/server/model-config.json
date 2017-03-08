@@ -16,5 +16,9 @@
   "item": {
     "dataSource": "item-db-cloudant",
     "public": true
+  },
+  "review": {
+    "dataSource": "review-db-cloudant",
+    "public": false
   }
 }
