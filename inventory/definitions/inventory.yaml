@@ -645,6 +645,11 @@ x-ibm-configuration:
         invoke-tls-profile: 'client:Loopback-client'
   assembly:
     execute:
+      - activity-log:
+          title: activity-log
+          content: payload
+          error-content: payload
+          version: 1.0.0
       - invoke:
           target-url: $(runtime-url)$(request.path)$(request.search)
           tls-profile: $(invoke-tls-profile)
@@ -657,3 +662,4 @@ x-ibm-configuration:
       value: ''
       description: ''
       encoded: false
+  gateway: datapower-gateway
