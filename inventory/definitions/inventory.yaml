@@ -1,4 +1,174 @@
 paths:
+  '/items/{id}/reviews/{fk}':
+    get:
+      tags:
+        - item
+      summary: Find a related item by id for reviews.
+      operationId: item.prototype.__findById__reviews
+      parameters:
+        - name: fk
+          in: path
+          description: Foreign key for reviews
+          required: true
+          type: string
+          format: JSON
+        - name: id
+          in: path
+          description: item id
+          required: true
+          type: string
+          format: JSON
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            $ref: '#/definitions/review'
+      deprecated: false
+    delete:
+      tags:
+        - item
+      summary: Delete a related item by id for reviews.
+      operationId: item.prototype.__destroyById__reviews
+      parameters:
+        - name: fk
+          in: path
+          description: Foreign key for reviews
+          required: true
+          type: string
+          format: JSON
+        - name: id
+          in: path
+          description: item id
+          required: true
+          type: string
+          format: JSON
+      responses:
+        '204':
+          description: Request was successful
+      deprecated: false
+    put:
+      tags:
+        - item
+      summary: Update a related item by id for reviews.
+      operationId: item.prototype.__updateById__reviews
+      parameters:
+        - name: fk
+          in: path
+          description: Foreign key for reviews
+          required: true
+          type: string
+          format: JSON
+        - name: data
+          in: body
+          required: false
+          schema:
+            $ref: '#/definitions/review'
+        - name: id
+          in: path
+          description: item id
+          required: true
+          type: string
+          format: JSON
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            $ref: '#/definitions/review'
+      deprecated: false
+  '/items/{id}/reviews':
+    get:
+      tags:
+        - item
+      summary: Queries reviews of item.
+      operationId: item.prototype.__get__reviews
+      parameters:
+        - name: filter
+          in: query
+          required: false
+          type: string
+          format: JSON
+        - name: id
+          in: path
+          description: item id
+          required: true
+          type: string
+          format: JSON
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/review'
+      deprecated: false
+    post:
+      tags:
+        - item
+      summary: Creates a new instance in reviews of this model.
+      operationId: item.prototype.__create__reviews
+      parameters:
+        - name: data
+          in: body
+          required: false
+          schema:
+            $ref: '#/definitions/review'
+        - name: id
+          in: path
+          description: item id
+          required: true
+          type: string
+          format: JSON
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            $ref: '#/definitions/review'
+      deprecated: false
+    delete:
+      tags:
+        - item
+      summary: Deletes all reviews of this model.
+      operationId: item.prototype.__delete__reviews
+      parameters:
+        - name: id
+          in: path
+          description: item id
+          required: true
+          type: string
+          format: JSON
+      responses:
+        '204':
+          description: Request was successful
+      deprecated: false
+  '/items/{id}/reviews/count':
+    get:
+      tags:
+        - item
+      summary: Counts reviews of item.
+      operationId: item.prototype.__count__reviews
+      parameters:
+        - name: where
+          in: query
+          description: Criteria to match model instances
+          required: false
+          type: string
+          format: JSON
+        - name: id
+          in: path
+          description: item id
+          required: true
+          type: string
+          format: JSON
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            type: object
+            properties:
+              count:
+                type: number
+                format: double
+      deprecated: false
   /items:
     post:
       tags:
@@ -360,6 +530,26 @@ paths:
                 format: double
       deprecated: false
 definitions:
+  x-any:
+    properties: {}
+  review:
+    properties:
+      date:
+        type: string
+      reviewer_email:
+        type: string
+      comment:
+        type: string
+      rating:
+        type: number
+        format: double
+      id:
+        type: string
+      itemId:
+        type: string
+    required:
+      - rating
+    additionalProperties: false
   item:
     properties:
       name:
@@ -390,8 +580,6 @@ definitions:
       - img_alt
       - price
     additionalProperties: false
-  x-any:
-    properties: {}
 basePath: /api
 swagger: '2.0'
 info:
