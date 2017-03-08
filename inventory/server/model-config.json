@@ -12,5 +12,9 @@
       "../common/mixins",
       "./mixins"
     ]
+  },
+  "item": {
+    "dataSource": "item-db-cloudant",
+    "public": true
   }
 }
