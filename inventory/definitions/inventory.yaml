@@ -594,7 +594,7 @@ definitions:
       - img_alt
       - price
     additionalProperties: false
-basePath: /api
+basePath: /inventory
 swagger: '2.0'
 info:
   x-ibm-name: inventory
@@ -608,6 +608,14 @@ consumes:
 produces:
   - application/json
 securityDefinitions:
+  oauth:
+    type: oauth2
+    description: Resource Owner Password Grant Type
+    flow: password
+    scopes:
+      inventory: Access to all inventory resources
+    tokenUrl: >-
+      https://api.au.apiconnect.ibmcloud.com/cloud-accelerator-denis-workspace/sb/oauth2/token
   clientIdHeader:
     type: apiKey
     in: header
@@ -619,6 +627,8 @@ securityDefinitions:
 security:
   - clientIdHeader: []
     clientSecretHeader: []
+    oauth:
+      - inventory
 x-ibm-configuration:
   testable: true
   enforced: true
