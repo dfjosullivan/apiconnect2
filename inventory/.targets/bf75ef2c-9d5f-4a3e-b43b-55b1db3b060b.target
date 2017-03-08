@@ -1,0 +1,119 @@
+type: bluemix
+server:
+  displayName: Sydney
+  name: au-syd
+  host: au.apiconnect.ibmcloud.com
+org:
+  id: 58be3aed0cf2dd029e08ccb5
+  name: cloud-accelerator-denis-workspace
+  displayName: Cloud Accelerator (denis-workspace)
+  orgType: apiProvider
+  status: active
+  advPortalOverride: true
+  extUaaAuthenticated: false
+  requiresSSLClientCertCheck: false
+  dormant: false
+  url: 'https://au.apiconnect.ibmcloud.com/v1/orgs/58be3aed0cf2dd029e08ccb5'
+  externalOrgId: 261cf543-8015-42f9-a6a6-dc94f69e4e3f
+  externalInviteOverride: 'https://console.au-syd.bluemix.net/apis/catalog/invitation'
+  externalSpaceId: 261cf543-8015-42f9-a6a6-dc94f69e4e3f
+  externalNativeOrgId: 1c27779a-b3a4-4411-9304-f1829a73a178
+catalog:
+  id: 58be3aee0cf2dd029e08ccc1
+  orgId: 58be3aed0cf2dd029e08ccb5
+  name: Sandbox
+  shortName: sb
+  owner:
+    id: 58be35d90cf2dd029e08cbbf
+    username: brett@innovolve.com.au
+    context: apimanager
+    idpId: 58309060d537926087f383a5
+    email: brett@innovolve.com.au
+    firstName: brett@innovolve.com.au
+    lastName: ''
+    status: ACTIVE
+    url: 'https://au.apiconnect.ibmcloud.com/v1/users/58be35d90cf2dd029e08cbbf'
+  apiCenter: false
+  baseUrl: 'https://api.au.apiconnect.ibmcloud.com/cloud-accelerator-denis-workspace/sb'
+  portalType: ADVANCED
+  portalUrl: >-
+    https://developer.au.apiconnect.ibmcloud.com/cloud-accelerator-denis-workspace/sb
+  customPortalUrl: >-
+    https://developer.au.apiconnect.ibmcloud.com/cloud-accelerator-denis-workspace/sb
+  advPortalUrl: >-
+    https://sb-cloud-accelerator-denis-workspace.developer.au.apiconnect.ibmcloud.com
+  gatewayType: DataPowerGateway
+  idp: 58be3aee0cf2dd029e08ccc2
+  idps:
+    - 58be3aee0cf2dd029e08ccc2
+  availableRoles:
+    - viewer
+    - developer
+  default: false
+  autoDeploy: true
+  gatewayClusterUrl: /gatewayClusters/PRODAPIC_APIMGMT_GATEWAY
+  restrictedDeployment: false
+  invitationEnabled: true
+  selfSignUpEnabled: true
+  spaceEnabled: false
+  spaceIds:
+    - 58be3aee0cf2dd029e08ccca
+  testAppEnabled: true
+  testAppCredentials:
+    clientId: 09105214-02c3-4244-9e67-1aa77c5c3cf3
+    clientSecret: Y6oP3aQ1iU3rI0pF5oW5jF4cQ2sC5bL4qG8dC3xA6jL3mX4eO4
+  createdAt: '2017-03-07T04:45:34.738+0000'
+  updatedAt: '2017-03-07T04:47:28.112+0000'
+  createdBy: apim-ops@wwpdl.vnet.ibm.com
+  updatedBy: denis@cloudaccelerator.co
+  url: >-
+    https://au.apiconnect.ibmcloud.com/v1/orgs/58be3aed0cf2dd029e08ccb5/environments/58be3aee0cf2dd029e08ccc1
+  productDeploymentApprovalRequiredStates: []
+  orgName: cloud-accelerator-denis-workspace
+space:
+  none: true
+app:
+  metadata:
+    guid: 55a865f5-9a2a-470f-9b04-f3998bce4a57
+    url: /v2/apps/55a865f5-9a2a-470f-9b04-f3998bce4a57
+    created_at: '2017-03-07T23:15:34Z'
+    updated_at: '2017-03-08T02:38:13Z'
+  entity:
+    name: inventory
+    production: false
+    space_guid: 261cf543-8015-42f9-a6a6-dc94f69e4e3f
+    stack_guid: 1dc6e02f-0d02-4c0f-a176-bfc6ea23fca1
+    buildpack: null
+    detected_buildpack: 'SDK for Node.js(TM) (ibm-node.js-4.7.2, buildpack-v3.10-20170119-1146)'
+    environment_json: {}
+    memory: 256
+    instances: 1
+    disk_quota: 1024
+    state: STARTED
+    version: e3a96fba-6375-4313-a45f-f75fe752a79d
+    command: null
+    console: true
+    debug: null
+    staging_task_id: 4593bde7cbab4bed8069712c46e0f526
+    package_state: STAGED
+    health_check_type: port
+    health_check_timeout: null
+    staging_failed_reason: null
+    staging_failed_description: null
+    diego: true
+    docker_image: null
+    package_updated_at: '2017-03-08T02:36:48Z'
+    detected_start_command: ./vendor/initial_startup.rb
+    enable_ssh: true
+    docker_credentials_json:
+      redacted_message: '[PRIVATE DATA HIDDEN]'
+    ports:
+      - 8080
+    space_url: /v2/spaces/261cf543-8015-42f9-a6a6-dc94f69e4e3f
+    stack_url: /v2/stacks/1dc6e02f-0d02-4c0f-a176-bfc6ea23fca1
+    routes_url: /v2/apps/55a865f5-9a2a-470f-9b04-f3998bce4a57/routes
+    events_url: /v2/apps/55a865f5-9a2a-470f-9b04-f3998bce4a57/events
+    service_bindings_url: /v2/apps/55a865f5-9a2a-470f-9b04-f3998bce4a57/service_bindings
+    route_mappings_url: /v2/apps/55a865f5-9a2a-470f-9b04-f3998bce4a57/route_mappings
+id: bf75ef2c-9d5f-4a3e-b43b-55b1db3b060b
+target: 1.0.0

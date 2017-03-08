@@ -192,7 +192,9 @@ paths:
     put:
       tags:
         - item
-      summary: Patch an existing model instance or insert a new one into the data source.
+      summary: >-
+        Patch an existing model instance or insert a new one into the data
+        source.
       operationId: item.upsert__put_items
       parameters:
         - name: data
@@ -211,7 +213,9 @@ paths:
     patch:
       tags:
         - item
-      summary: Patch an existing model instance or insert a new one into the data source.
+      summary: >-
+        Patch an existing model instance or insert a new one into the data
+        source.
       operationId: item.upsert__patch_items
       parameters:
         - name: data
@@ -251,7 +255,9 @@ paths:
     post:
       tags:
         - item
-      summary: Replace an existing model instance or insert a new one into the data source.
+      summary: >-
+        Replace an existing model instance or insert a new one into the data
+        source.
       operationId: item.replaceOrCreate
       parameters:
         - name: data
@@ -271,7 +277,9 @@ paths:
     post:
       tags:
         - item
-      summary: Update an existing model instance or insert a new one into the data source based on the where criteria.
+      summary: >-
+        Update an existing model instance or insert a new one into the data
+        source based on the where criteria.
       operationId: item.upsertWithWhere
       parameters:
         - name: where
@@ -382,7 +390,9 @@ paths:
     put:
       tags:
         - item
-      summary: Patch attributes for a model instance and persist it into the data source.
+      summary: >-
+        Patch attributes for a model instance and persist it into the data
+        source.
       operationId: 'item.prototype.updateAttributes__put_items_{id}'
       parameters:
         - name: data
@@ -407,7 +417,9 @@ paths:
     patch:
       tags:
         - item
-      summary: Patch attributes for a model instance and persist it into the data source.
+      summary: >-
+        Patch attributes for a model instance and persist it into the data
+        source.
       operationId: 'item.prototype.updateAttributes__patch_items_{id}'
       parameters:
         - name: data
@@ -433,7 +445,9 @@ paths:
     post:
       tags:
         - item
-      summary: Replace attributes for a model instance and persist it into the data source.
+      summary: >-
+        Replace attributes for a model instance and persist it into the data
+        source.
       operationId: item.replaceById
       parameters:
         - name: id
@@ -616,8 +630,20 @@ x-ibm-configuration:
         runtime-url: $(TARGET_URL)
     sb:
       properties:
-        runtime-url: 'http://localhost:4001'
+        runtime-url: >-
+          https://apiconnect-55a865f5-9a2a-470f-9b04-f3998bce4a57.cloud-accelerator-denis-workspace.apic.au-syd.mybluemix.net
+        invoke-tls-profile: 'client:Loopback-client'
   assembly:
     execute:
       - invoke:
           target-url: $(runtime-url)$(request.path)$(request.search)
+          tls-profile: $(invoke-tls-profile)
+  properties:
+    runtime-url:
+      value: ''
+      description: ''
+      encoded: false
+    invoke-tls-profile:
+      value: ''
+      description: ''
+      encoded: false
